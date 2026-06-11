@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dual AI Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <div class="sidebar">
+            <div class="logo">
+                <h2>CustomAI</h2>
+            </div>
+            <div class="topic-buttons">
+                <button class="topic-btn active" id="btn-coding" onclick="switchTopic('coding')">
+                    <i class="fa-solid fa-code"></i> Coding Tutor
+                </button>
+                <button class="topic-btn" id="btn-finance" onclick="switchTopic('finance')">
+                    <i class="fa-solid fa-wallet"></i> Finance Guide
+                </button>
+            </div>
+            <div class="sidebar-footer">
+                <p>Status: <span class="status-online">Online</span></p>
+            </div>
+        </div>
+
+        <div class="chat-area">
+            <div class="chat-header">
+                <h3 id="chat-title">Coding & Debugging Assistant</h3>
+                <p id="chat-subtitle">Paste your error or code snippet here. I will explain</p>
+            </div>
+
+            <div class="chat-messages" id="chat-box">
+                <div class="message model-message">
+                    Hello! I am your coding tutor.You share your code here and i will help you fix it by explaining it to you instead of giving code.
+                </div>
+            </div>
+
+            <form class="chat-input-container" id="chat-form">
+                <textarea id="user-input" placeholder="Type your message or paste your code here..." rows="1" required></textarea>
+                <button type="submit" id="send-btn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
