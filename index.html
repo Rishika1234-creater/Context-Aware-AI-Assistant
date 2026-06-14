@@ -9,11 +9,36 @@
 </head>
 <body>
 
-    <div class="app-container">
+    <div class="auth-modal-overlay" id="auth-modal">
+        <div class="auth-card">
+            <h3>Secure Gateway Access</h3>
+            <p>Please log in to initiate secure assistant interactions</p>
+            <form id="auth-form">
+                <div class="auth-input-group">
+                    <label for="auth-username">Username</label>
+                    <input type="text" id="auth-username" placeholder="Enter 'admin'" required autocomplete="off">
+                </div>
+                <div class="auth-input-group">
+                    <label for="auth-password">Password</label>
+                    <input type="password" id="auth-password" placeholder="Enter 'password123'" required>
+                </div>
+                <div class="auth-error-message" id="auth-error"></div>
+                <button type="submit" class="auth-submit-btn">Authorize Session</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="app-container auth-blurred">
         <div class="sidebar">
             <div class="logo">
-                <h2>CustomAI</h2>
+                <h2>ContextAI</h2>
             </div>
+            
+            <div class="user-profile-tag">
+                <p><i class="fa-solid fa-circle-user"></i> <span id="display-username">Guest</span></p>
+                <button id="btn-logout" title="Terminate Active Session"><i class="fa-solid fa-power-off"></i></button>
+            </div>
+
             <div class="topic-buttons">
                 <button class="topic-btn active" id="btn-coding" onclick="switchTopic('coding')">
                     <i class="fa-solid fa-code"></i> Coding Tutor
@@ -22,6 +47,32 @@
                     <i class="fa-solid fa-wallet"></i> Finance Guide
                 </button>
             </div>
+
+            <div class="sidebar-dashboard">
+                <div class="dashboard-header">
+                    <i class="fa-solid fa-brain"></i>
+                    <h4>Memory Dashboard</h4>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="dash-card">
+                        <span class="dash-value" id="dash-total-msgs">0</span>
+                        <span class="dash-label">Total Logs</span>
+                    </div>
+                    <div class="dash-card">
+                        <span class="dash-value" id="dash-coding-msgs">0</span>
+                        <span class="dash-label">Coding</span>
+                    </div>
+                    <div class="dash-card">
+                        <span class="dash-value" id="dash-finance-msgs">0</span>
+                        <span class="dash-label">Finance</span>
+                    </div>
+                    <div class="dash-card">
+                        <span class="dash-value" id="dash-active-sessions">0/2</span>
+                        <span class="dash-label">Modes Run</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="sidebar-footer">
                 <p>Status: <span class="status-online">Online</span></p>
             </div>
@@ -29,8 +80,25 @@
 
         <div class="chat-area">
             <div class="chat-header">
-                <h3 id="chat-title">Coding & Debugging Assistant</h3>
-                <p id="chat-subtitle">Paste your error or code snippet here. I will explain</p>
+                <div class="header-main-info">
+                    <h3 id="chat-title">Coding & Debugging Assistant</h3>
+                    <p id="chat-subtitle">Paste your error or code snippet here. I will explain</p>
+                </div>
+                
+                <div class="header-utilities-panel">
+                    <div class="difficulty-control-wrapper">
+                        <label for="difficulty-select"><i class="fa-solid fa-layer-group"></i> Depth:</label>
+                        <select id="difficulty-select">
+                            <option value="beginner" selected>Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+                    
+                    <button id="btn-export" title="Export Current Log Session to PDF">
+                        <i class="fa-solid fa-file-pdf"></i> Export
+                    </button>
+                </div>
             </div>
 
             <div class="chat-messages" id="chat-box">
