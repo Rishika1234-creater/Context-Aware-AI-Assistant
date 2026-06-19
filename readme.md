@@ -1,39 +1,136 @@
-# Context-Aware Intelligent Assistant with Persistent Storage
+# Context-Aware AI Chatbot
 
-DualMind AI is a production-ready, full-stack web application featuring a dual-domain AI conversational assistant powered by the Google Gemini API. The core architecture leverages dynamic context switching, advanced prompt engineering guardrails, and automated local data persistence to create an optimized, lightweight user experience without heavy database overhead.
+A full-stack AI chatbot built using **Node.js, Express.js, Vanilla JavaScript, and Google Gemini API**.
 
-The platform splits into two highly specialized domains with fluid visual themes:
-1. **Coding & Debugging Tutor:** A strict, concepts-first mentor that prevents spoon-feeding.
-2. **Personal Finance Guide:** A structured literacy advisor implementing financial frameworks like the 50/30/20 rule.
+The application provides two specialized AI assistants:
 
----
+-  Coding Tutor
+-  Personal Finance Guide
 
-## Key Architectural Features
-
-### Dynamic Context Switching
-The client-side infrastructure dynamically modulates system prompts, visual styling variables (`--current-glow`), messaging containers, and context banners on the fly. Switching domains immediately signals the backend node to swap execution constraints and reload domain-specific histories.
-
-###  Advanced Prompt Engineering & Guardrails
-- **The Non-Spoonfeeding Rule:** The Coding Assistant is injected with behavioral directives that restrict it from outputting complete refactored code blocks or snippets. It forces the user into an active debugging loop by explaining the *What*, *Why*, and *How* conceptually.
-- **Structured Financial Frameworks:** The Finance Guide strictly formats recommendations with readable bullet points, tables, or numeric breakdowns, maintaining a clear distinction between generic financial literacy and regulated professional advice.
-
-### Native File System Data Persistence
-Instead of relying on heavy local database servers (like MongoDB or SQL installs), this project utilizes an asynchronous/synchronous pipeline with the Node.js native File System (`fs`) module. 
-- All conversations are structured, serialized, and safely committed into a centralized `database.json` store.
-- On page load (`DOMContentLoaded`) or tab toggling, automated endpoint hooks (`/api/history/:topic`) fetch and render previous message structures seamlessly.
-
-###  Optimized Direct REST Communication
-To bypass package version conflicts and engine performance overhead frequently caused by heavy generative AI wrapper SDKs, the backend architecture connects directly to Google's API servers using secure HTTP `fetch` streams over REST.
+Users can switch between both modes instantly, with separate chat histories and AI behavior for each domain.
 
 ---
 
-##  Technology Stack & Dependencies
+##  Features
 
-- **Frontend Layers:** - Semantic HTML5 & Modern CSS3 (featuring Glassmorphism, CSS Custom Properties, and responsive flex grids).
-  - Vanilla JavaScript (ES6+, utilizing asynchronous event workflows and Fetch APIs).
-- **Backend Architecture:** Node.js framework paired with Express.js router.
-- **Storage Tier:** Document Object Serialization via local JSON streams.
-- **AI Integration Core:** Google Gemini API Protocol (`gemini-1.5-flash` engine).
+###  Coding Tutor
+
+- Explains programming concepts and debugging errors.
+- Identifies:
+  - What is wrong in the code
+  - Why the error occurs
+  - How to approach the solution
+- Does **not provide complete code solutions**, encouraging active learning.
+- Supports multiple learning levels:
+  - Beginner
+  - Intermediate
+  - Advanced
+- Responses are customized according to the selected level.
+
+###  Personal Finance Guide
+
+- Provides financial literacy guidance.
+- Explains budgeting, saving, and money management concepts.
+- Uses frameworks such as the **50/30/20 budgeting rule**.
+- Gives structured and easy-to-understand advice.
+
+###  Authentication System
+
+- User Signup and Login functionality.
+- Secure access to personal conversations.
+
+###  Chat History Dashboard
+
+- View previous conversations.
+- Continue old chats anytime.
+- Separate history maintained for different assistant modes.
+
+###  Dynamic Mode Switching
+
+- Instantly switch between Coding Tutor and Finance Guide.
+- Updates assistant behavior based on the selected mode.
+- Changes UI theme dynamically.
+
+###  Local Data Persistence
+
+- Chat history is automatically saved.
+- Uses a local `database.json` file.
+- No external database required.
+
+###  Responsive UI
+
+- Modern Glassmorphism-inspired design.
+- Works across desktop and mobile devices.
+
+---
+
+##  Tech Stack
+
+### Frontend
+- HTML5
+- CSS3
+- JavaScript (ES6)
+
+### Backend
+- Node.js
+- Express.js
+
+### AI Integration
+- Google Gemini API (Gemini 1.5 Flash)
+
+### Storage
+- JSON File Storage
+- Node.js File System (`fs`)
+
+---
+
+##  How It Works
+
+1. User logs into the application.
+2. Selects either Coding Tutor or Finance Guide.
+3. Sends a message to the AI assistant.
+4. Backend forwards the request to Gemini API.
+5. AI generates a response based on the selected mode.
+6. Conversation is automatically stored.
+7. Previous chats can be accessed from the dashboard.
+
+---
+
+##  Key Highlights
+
+- Dual-domain AI assistant
+- Skill-based Coding Tutor (Beginner, Intermediate, Advanced)
+- No-spoonfeeding learning approach
+- Personal Finance guidance
+- User Authentication
+- Chat History Dashboard
+- Local JSON-based storage
+- Dynamic UI theme switching
+- Gemini API integration
+
+---
+
+##  What I Learned
+
+- Full-Stack Development
+- REST APIs
+- Authentication & Authorization
+- Prompt Engineering
+- AI Chatbot Development
+- File-based Data Storage
+- Frontend-Backend Integration
+- State & History Management
+
+---
+
+##  Future Improvements
+
+- Cloud Database Integration
+- User Profile Customization
+- Export Chat History
+- Multiple AI Model Support
+- Analytics Dashboard
+
 
 ---
 
@@ -51,3 +148,9 @@ To bypass package version conflicts and engine performance overhead frequently c
 ├── 📄 style.css            # Responsive styles, theme glows, and sleek user experience
 ├── 📄 script.js            # Main frontend orchestration & history mapping engine
 └── 📄 server.js            # Core entry point, Express server, and API logic gateway
+
+---
+
+## 📌 Project Summary
+
+Context-Aware AI is an AI-powered chatbot that combines a **Coding Tutor** and a **Personal Finance Guide** into a single platform. The application includes authentication, chat history management, skill-based AI responses, dynamic mode switching, and local data persistence to provide an interactive learning experience.
