@@ -1,6 +1,5 @@
 let currentTopic = 'coding'; 
 
-// Existing DOM Elements
 const chatTitle = document.getElementById('chat-title');
 const chatSubtitle = document.getElementById('chat-subtitle');
 const chatBox = document.getElementById('chat-box');
@@ -9,7 +8,6 @@ const userInput = document.getElementById('user-input');
 const btnCoding = document.getElementById('btn-coding');
 const btnFinance = document.getElementById('btn-finance');
 
-// --- NEW FEATURE DOM ELEMENTS ---
 const selectDifficulty = document.getElementById('difficulty-select');
 const btnExport = document.getElementById('btn-export');
 
@@ -22,20 +20,17 @@ const mainAppContainer = document.querySelector('.app-container');
 const btnLogout = document.getElementById('btn-logout');
 const displayUsername = document.getElementById('display-username');
 
-// --- FEATURE 4: AUTHENTICATION MANAGEMENT CONTROL ---
 async function checkUserSession() {
     try {
         const response = await fetch('/api/auth/session');
         const data = await response.json();
         
         if (data.user) {
-            // User is logged in
             authModal.classList.add('hidden');
             mainAppContainer.classList.remove('auth-blurred');
             displayUsername.innerText = data.user.username;
             switchTopic(currentTopic);
         } else {
-            // User is not logged in
             authModal.classList.remove('hidden');
             mainAppContainer.classList.add('auth-blurred');
         }
@@ -79,7 +74,6 @@ btnLogout.addEventListener('click', async () => {
     }
 });
 
-// --- FEATURE 1: DASHBOARD SYNCING LOGIC ---
 async function updateDashboardMetrics() {
     try {
         const response = await fetch('/api/dashboard');
@@ -96,7 +90,6 @@ async function updateDashboardMetrics() {
     }
 }
 
-// Topic Switch Logic
 async function switchTopic(topic) {
     if (currentTopic === topic && chatBox.innerHTML !== '') return;
 
@@ -154,7 +147,6 @@ function addMessage(text, sender) {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// Form Submission & Feature 2 Integration
 chatForm.addEventListener('submit', async (e) => {
     e.preventDefault(); 
     
@@ -170,7 +162,6 @@ chatForm.addEventListener('submit', async (e) => {
         const bubbles = chatBox.getElementsByClassName('model-message');
         const loadingBubble = bubbles[bubbles.length - 1];
         
-        // Target current difficulty choice value
         const currentDifficulty = selectDifficulty ? selectDifficulty.value : 'beginner';
 
         const response = await fetch('/api/chat', {
@@ -181,7 +172,7 @@ chatForm.addEventListener('submit', async (e) => {
             body: JSON.stringify({
                 topic: currentTopic,
                 message: message,
-                difficulty: currentDifficulty // Sent to backend
+                difficulty: currentDifficulty 
             })
         });
 
@@ -202,7 +193,6 @@ chatForm.addEventListener('submit', async (e) => {
     }
 });
 
-// --- FEATURE 3: EXPORT CONVERSATION STREAM AS PDF ---
 async function exportChatToPDF() {
     try {
         const response = await fetch(`/api/export-data/${currentTopic}`);
@@ -214,7 +204,6 @@ async function exportChatToPDF() {
         
         const pack = await response.json();
         
-        // Open a clean secondary workspace viewport window
         const printWindow = window.open('', '_blank', 'width=900,height=700');
         
         let htmlContent = `
@@ -262,7 +251,6 @@ async function exportChatToPDF() {
         printWindow.document.write(htmlContent);
         printWindow.document.close();
         
-        // Trigger print dialog immediately
         printWindow.focus();
         setTimeout(() => {
             printWindow.print();
@@ -275,7 +263,6 @@ async function exportChatToPDF() {
     }
 }
 
-// Event Bindings
 btnExport.addEventListener('click', exportChatToPDF);
 
 userInput.addEventListener('keydown', (e) => {

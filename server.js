@@ -17,7 +17,6 @@ app.use(express.static(__dirname));
 
 const DB_FILE = path.join(__dirname, 'database.json');
 
-// --- HELPER DATABASE FUNCTIONS ---
 function readLocalDB() {
     try {
         if (!fs.existsSync(DB_FILE)) {
@@ -34,16 +33,13 @@ function writeLocalDB(data) {
     fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf-8');
 }
 
-// Root Route
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// --- FEATURE 4: BASIC AUTHENTICATION ENDPOINTS ---
 app.post('/api/auth/login', (req, res) => {
     const { username, password } = req.body;
     
-    // Simple mock authentication for testing
     if (username === 'admin' && password === 'password123') {
         const db = readLocalDB();
         db.user = { username: 'admin', loggedInAt: new Date() };
@@ -66,7 +62,6 @@ app.get('/api/auth/session', (req, res) => {
     res.json({ user: db.user });
 });
 
-// --- FEATURE 1: MEMORY DASHBOARD ENDPOINT ---
 app.get('/api/dashboard', (req, res) => {
     try {
         const db = readLocalDB();
@@ -86,12 +81,12 @@ app.get('/api/dashboard', (req, res) => {
             activeTopics
         });
     } catch (error) {
-        console.error("❌ Dashboard metric error:", error);
+        console.error(" Dashboard metric error:", error);
         res.status(500).json({ error: "Could not load dashboard metrics" });
     }
 });
 
-// History Endpoint
+
 app.get('/api/history/:topic', (req, res) => {
     const { topic } = req.params;
     try {
@@ -99,15 +94,15 @@ app.get('/api/history/:topic', (req, res) => {
         const history = db[topic] ? db[topic].messages : [];
         res.json({ history });
     } catch (error) {
-        console.error("❌ History fetch error:", error);
+        console.error(" History fetch error:", error);
         res.status(500).json({ error: "Could not fetch history" });
     }
 });
 
-// --- FEATURE 2: DIFFICULTY-AWARE TUTOR CHAT INTEGRATION ---
+
 app.post('/api/chat', async (req, res) => {
     const { topic, message, difficulty } = req.body; 
-    const currentDifficulty = difficulty || 'beginner'; // fallback default
+    const currentDifficulty = difficulty || 'beginner'; 
     
     console.log(`[LOG] Msg received for [${topic}] at [${currentDifficulty}] level: "${message}"`);
     
@@ -117,7 +112,6 @@ app.post('/api/chat', async (req, res) => {
             db[topic] = { messages: [] };
         }
 
-        // Build customized system instructions depending on choice profiles
         let systemInstruction = "";
         if (topic === 'coding') {
             systemInstruction = 
@@ -185,7 +179,6 @@ app.post('/api/chat', async (req, res) => {
 
         const aiResponseText = responseData.candidates[0].content.parts[0].text;
 
-        // Save conversation history with metadata
         db[topic].messages.push({ role: 'user', text: message, difficulty: currentDifficulty, timestamp: new Date() });
         db[topic].messages.push({ role: 'model', text: aiResponseText, timestamp: new Date() });
         
@@ -193,12 +186,12 @@ app.post('/api/chat', async (req, res) => {
         res.json({ reply: aiResponseText });
         
     } catch (error) {
-        console.error("ERROR LOG:", error.message);
+        console.error("FULL ERROR:", error);
         res.status(500).json({ reply: `Error: ${error.message}.` });
     }
 });
 
-// --- FEATURE 3: EXPORT HISTORY CONFIGURATION DATA ---
+
 app.get('/api/export-data/:topic', (req, res) => {
     const { topic } = req.params;
     try {
@@ -216,5 +209,5 @@ app.get('/api/export-data/:topic', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`🚀 Upgraded HTTP Server running on http://localhost:${PORT}`);
+    console.log(` Upgraded HTTP Server running on http://localhost:${PORT}`);
 });

@@ -1,4 +1,4 @@
-/* Universal Styles & Reset */
+
 * {
     margin: 0;
     padding: 0;
@@ -7,20 +7,19 @@
 }
 
 :root {
-    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-    --card-bg: rgba(30, 41, 59, 0.7);
-    --border-color: rgba(255, 255, 255, 0.1);
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
+    --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+    --card-bg: rgba(255,255,255,0.85);
+    --border-color: #e2e8f0;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
     
-    /* Neon Accents */
-    --coding-glow: #818cf8;
-    --finance-glow: #34d399;
-    --current-glow: #818cf8; /* Default */
+    --coding-glow: #6366f1;
+    --finance-glow: #8b5cf6;
+    --current-glow: #6366f1;
 }
 
 body {
-    background: var(--bg-gradient);
+    background: #f8fafc;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -40,7 +39,7 @@ body {
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--border-color);
     border-radius: 24px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
     overflow: hidden;
     transition: filter 0.4s ease;
 }
@@ -55,7 +54,7 @@ body {
 /* SIDEBAR: Futuristic Left Panel */
 .sidebar {
     width: 300px;
-    background: rgba(15, 23, 42, 0.6);
+    background: #ffffff;
     border-right: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
@@ -67,7 +66,7 @@ body {
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
-    background: linear-gradient(to right, #818cf8, #34d399);
+    background: linear-gradient(to right, #6366f1, #8b5cf6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 25px;
@@ -164,7 +163,7 @@ body {
 
 /* FEATURE 1: MEMORY DASHBOARD COMPONENT STYLES */
 .sidebar-dashboard {
-    background: rgba(15, 23, 42, 0.4);
+    background: #f8fafc;
     border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 14px;
@@ -201,7 +200,7 @@ body {
 }
 
 .dash-card {
-    background: rgba(30, 41, 59, 0.4);
+    background: white;
     border: 1px solid rgba(255, 255, 255, 0.02);
     border-radius: 10px;
     padding: 10px 6px;
@@ -215,7 +214,7 @@ body {
 .dash-value {
     font-size: 1.15rem;
     font-weight: 800;
-    color: #fff;
+    color: #111827;
     margin-bottom: 2px;
 }
 
@@ -242,19 +241,17 @@ body {
     text-shadow: 0 0 8px rgba(52, 211, 153, 0.6);
 }
 
-/* MAIN CHAT AREA */
 .chat-area {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background: rgba(30, 41, 59, 0.3);
+    background: #f8fafc;
 }
 
-/* Elegant Header Layout Customizations */
 .chat-header {
     padding: 22px 40px;
     border-bottom: 1px solid var(--border-color);
-    background: rgba(15, 23, 42, 0.2);
+    background: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -275,7 +272,6 @@ body {
     color: var(--text-muted);
 }
 
-/* UTILITY SPLIT ACTION PANEL CONTAINER */
 .header-utilities-panel {
     display: flex;
     align-items: center;
@@ -312,7 +308,6 @@ body {
     color: var(--text-main);
 }
 
-/* FEATURE 3: PDF ACTION EXPORT ACTION TRIGGER BUTTON */
 #btn-export {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-color);
@@ -329,7 +324,7 @@ body {
 }
 
 #btn-export i {
-    color: #f87171; /* Accentuate PDF color */
+    color:#6366f1; ; 
 }
 
 #btn-export:hover {
@@ -338,7 +333,6 @@ body {
     box-shadow: 0 0 10px rgba(248, 113, 113, 0.2);
 }
 
-/* Chat Messages Display Space */
 .chat-messages {
     flex-grow: 1;
     padding: 40px;
@@ -348,7 +342,6 @@ body {
     gap: 20px;
 }
 
-/* Custom Scrollbar */
 .chat-messages::-webkit-scrollbar {
     width: 6px;
 }
@@ -357,7 +350,6 @@ body {
     border-radius: 10px;
 }
 
-/* Futuristic Message Bubbles */
 .message {
     max-width: 75%;
     padding: 16px 22px;
@@ -368,21 +360,20 @@ body {
 }
 
 .model-message {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
+    background: white;
+    border: 1px solid #e5e7eb;
     align-self: flex-start;
     border-top-left-radius: 4px;
 }
 
 .user-message {
-    background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
     color: white;
     align-self: flex-end;
     border-top-right-radius: 4px;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    box-shadow: none;
 }
 
-/* Capsule-shaped Floating Input Container */
 .chat-input-container {
     padding: 20px 40px 30px 40px;
     display: flex;
@@ -392,8 +383,8 @@ body {
 
 .chat-input-container textarea {
     flex-grow: 1;
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: white;
+    border: 1px solid #d1d5db;
     border-radius: 16px;
     padding: 16px;
     color: var(--text-main);
@@ -413,7 +404,7 @@ body {
     width: 55px;
     height: 55px;
     border-radius: 16px;
-    color: #0f172a;
+    color: white;
     font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.2s;
@@ -427,7 +418,6 @@ body {
     box-shadow: 0 0 15px var(--current-glow);
 }
 
-/* FEATURE 4: GLASSMORPHIC AUTH OVERLAY PANEL MODAL */
 .auth-modal-overlay {
     position: fixed;
     top: 0;
@@ -448,7 +438,7 @@ body {
 }
 
 .auth-card {
-    background: rgba(30, 41, 59, 0.85);
+    background: white;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -491,11 +481,11 @@ body {
 
 .auth-input-group input {
     width: 100%;
-    background: rgba(15, 23, 42, 0.6);
+    background: white;
     border: 1px solid var(--border-color);
     padding: 12px 16px;
     border-radius: 10px;
-    color: #fff;
+    color: #111827;
     font-size: 1rem;
     outline: none;
     transition: border-color 0.2s;
@@ -532,7 +522,6 @@ body {
     box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
 }
 
-/* Simple Animation */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
